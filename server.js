@@ -4,8 +4,8 @@ import mongoose from 'mongoose';
 import Data from './data.js';
 import Videos from './dbModel.js';
 
-import env from 'dotenv';
-env.config({ path: `${__dirname}/.env` });
+import dotenv from 'dotenv';
+dotenv.config({ path: './config.env' });
 
 // app config
 const app = express();
@@ -46,7 +46,7 @@ app.post('/v1/videos', (req, res) => {
 });
 
 // DB config
-const url = `mongodb+srv://admin:${process.env['PASSWORD']}`;
+const url = `mongodb+srv://admin:${process.env['PASSWORD']}${process.env['URL_ENDING']}`;
 mongoose.connect(url, {
   useNewUrlParser: true,
   useCreateIndex: true,
