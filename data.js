@@ -1,12 +1,12 @@
 const Data = [
   {
-    url: '',
-    channel: '',
-    song: 'Waste',
-    likes: 9342,
-    messages: 142,
-    description: 'sample here',
-    shares: 32,
+    url: 'sample.com',
+    channel: 'food',
+    song: "'Waste'",
+    likes: '9342',
+    messages: '142',
+    description: 'sample',
+    shares: '32',
   },
 ];
 

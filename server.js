@@ -4,6 +4,9 @@ import mongoose from 'mongoose';
 import Data from './data.js';
 import Videos from './dbModel.js';
 
+import env from 'dotenv';
+env.config({ path: `${__dirname}/.env` });
+
 // app config
 const app = express();
 const port = 9000;
@@ -43,8 +46,7 @@ app.post('/v1/videos', (req, res) => {
 });
 
 // DB config
-const url =
-  'mongodb+srv://admin:aquarius.@cluster0.wssnx.mongodb.net/tiktok?retryWrites=true&w=majority';
+const url = `mongodb+srv://admin:${process.env['PASSWORD']}@cluster0.wssnx.mongodb.net/tiktok?retryWrites=true&w=majority`;
 mongoose.connect(url, {
   useNewUrlParser: true,
   useCreateIndex: true,
