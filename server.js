@@ -8,13 +8,31 @@ import Videos from './dbModel.js';
 const app = express();
 const port = 9000;
 
+// middlewares
+app.use(express.json());
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*');
+  next();
+});
+
 // Routes
 app.get('/', (req, res) => {
   res.status(200).send('hello');
 });
-app.get('/v1/get', (req, res) => res.status(200).send(Data));
-app.post('/v1/post', (req, res) => {
+app.get('/v1/videos', (req, res) => {
+  Videos.find((err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+app.post('/v1/videos', (req, res) => {
   const dbVideos = req.body;
+
   Videos.create(dbVideos, (err, data) => {
     if (err) {
       res.status(500).send(err);
