@@ -10,7 +10,8 @@ dotenv.config({ path: './config.env' });
 
 // app config
 const app = express();
-const port = 9000;
+// If not set env port, will have problem with heroku deploy as it dont let u assign port beforehand
+const port = process.env.PORT || 9000;
 
 // middlewares
 app.use(express.json());
