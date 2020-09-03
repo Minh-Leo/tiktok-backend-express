@@ -1,9 +1,10 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
-import Data from './data.js';
+// import Data from './data.js';
 import Videos from './dbModel.js';
 
+// config env
 import dotenv from 'dotenv';
 dotenv.config({ path: './config.env' });
 
@@ -14,6 +15,7 @@ const port = 9000;
 // middlewares
 app.use(express.json());
 app.use((req, res, next) => {
+  // Dont do this in production
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', '*');
   next();
