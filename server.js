@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
-// import Data from './data.js';
+import Data from './data.js';
 import Videos from './dbModel.js';
 
 // config env
@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.get('/', (req, res) => {
-  res.status(200).send('hello');
+  res.status(200).send(Data);
 });
 app.get('/v1/videos', (req, res) => {
   Videos.find((err, data) => {
@@ -35,6 +35,15 @@ app.get('/v1/videos', (req, res) => {
     }
   });
 });
+// app.get('/v1/videos', (req, res) => {
+//   Videos.find((err, data) => {
+//     if (err) {
+//       res.status(500).send(err);
+//     } else {
+//       res.status(200).send(data);
+//     }
+//   });
+// });
 
 app.post('/v1/videos', (req, res) => {
   const dbVideos = req.body;
